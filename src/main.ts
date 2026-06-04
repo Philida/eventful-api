@@ -8,7 +8,11 @@ import {
 } from '@nestjs/swagger';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create(
+    AppModule,
+  );
+
+  app.enableCors();
 
   app.useGlobalPipes(
     new ValidationPipe({
@@ -38,12 +42,17 @@ async function bootstrap() {
     document,
   );
 
-  await app.listen(
-    process.env.PORT ?? 3000,
+  const port =
+    Number(process.env.PORT) || 3000;
+
+  await app.listen(port);
+
+  console.log(
+    `Server running on port ${port}`,
   );
 
   console.log(
-    `Swagger running on http://localhost:${process.env.PORT ?? 3000}/api`,
+    `Swagger running on /api`,
   );
 }
 

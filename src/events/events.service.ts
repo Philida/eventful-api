@@ -71,8 +71,15 @@ export class EventsService {
       skip,
       take: limit,
       include: {
-        creator: true,
-      },
+  creator: {
+    select: {
+      id: true,
+      name: true,
+      email: true,
+      role: true,
+    },
+  },
+}
     });
 
   const total =
@@ -89,13 +96,20 @@ export class EventsService {
 }
 
   async findOne(id: string) {
-    return this.prisma.event.findUnique({
-      where: { id },
-      include: {
-        creator: true,
+  return this.prisma.event.findUnique({
+    where: { id },
+    include: {
+      creator: {
+        select: {
+          id: true,
+          name: true,
+          email: true,
+          role: true,
+        },
       },
-    });
-  }
+    },
+  });
+}
 
   async updateEvent(
     eventId: string,

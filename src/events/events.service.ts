@@ -96,19 +96,28 @@ export class EventsService {
 }
 
   async findOne(id: string) {
-  return this.prisma.event.findUnique({
-    where: { id },
-    include: {
-      creator: {
-        select: {
-          id: true,
-          name: true,
-          email: true,
-          role: true,
+  const event =
+    await this.prisma.event.findUnique({
+      where: { id },
+      include: {
+        creator: {
+          select: {
+            id: true,
+            name: true,
+            email: true,
+            role: true,
+          },
         },
       },
-    },
-  });
+    });
+
+  if (!event) {
+    throw new NotFoundException(
+      'Event not found',
+    );
+  }
+
+  return event;
 }
 
   async updateEvent(

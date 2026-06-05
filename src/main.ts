@@ -27,7 +27,14 @@ async function bootstrap() {
       'Event Management Platform API',
     )
     .setVersion('1.0')
-    .addBearerAuth()
+    .addBearerAuth(
+  {
+    type: 'http',
+    scheme: 'bearer',
+    bearerFormat: 'JWT',
+  },
+  'bearer',
+)
     .build();
 
   const document =

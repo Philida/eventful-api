@@ -13,6 +13,7 @@ import {
   UseInterceptors,
 } from '@nestjs/common';
 
+import { ApiBearerAuth } from '@nestjs/swagger';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
 
@@ -26,6 +27,7 @@ import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { RolesGuard } from '../auth/guards/roles.guard';
 import { Roles } from '../auth/decorators/roles.decorator';
 
+@ApiBearerAuth()
 @Controller('events')
 export class EventsController {
   constructor(
@@ -58,34 +60,32 @@ export class EventsController {
   findAll(
     @Query() query: QueryEventsDto,
   ) {
-    return this.eventsService.findAll(
-      query,
-    );
+    return this.eventsService.findAll(query);
   }
 
   @Get('top-rated')
-topRatedEvents() {
-  return this.eventsService.topRatedEvents();
-}
+  topRatedEvents() {
+    return this.eventsService.topRatedEvents();
+  }
 
-@Get('my-events')
-@UseGuards(JwtAuthGuard, RolesGuard)
-@Roles('CREATOR')
-getMyEvents(@Request() req) {
-  return this.eventsService.getMyEvents(
-    req.user.sub,
-  );
-}
+  @Get('my-events')
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles('CREATOR')
+  getMyEvents(@Request() req) {
+    return this.eventsService.getMyEvents(
+      req.user.sub,
+    );
+  }
 
-@Get('recommended')
-@UseGuards(JwtAuthGuard)
-getRecommendedEvents(
-  @Request() req,
-) {
-  return this.eventsService.getRecommendedEvents(
-    req.user.sub,
-  );
-}
+  @Get('recommended')
+  @UseGuards(JwtAuthGuard)
+  getRecommendedEvents(
+    @Request() req,
+  ) {
+    return this.eventsService.getRecommendedEvents(
+      req.user.sub,
+    );
+  }
 
   @Get(':id')
   findOne(

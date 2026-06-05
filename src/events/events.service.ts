@@ -271,11 +271,14 @@ export class EventsService {
         },
       });
 
-    const categories =
-      favorites.map(
-        (favorite) =>
-          favorite.event.category,
-      );
+    const categories = [
+  ...new Set(
+    favorites.map(
+      (favorite) =>
+        favorite.event.category,
+    ),
+  ),
+];
 
     if (categories.length === 0) {
       return this.prisma.event.findMany({

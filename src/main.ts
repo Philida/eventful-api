@@ -50,17 +50,15 @@ async function bootstrap() {
   );
 
   const port =
-    Number(process.env.PORT) || 3000;
+  Number(process.env.PORT) || 3000;
 
-  await app.listen(port);
+console.log('PORT:', port);
 
-  console.log(
-    `Server running on port ${port}`,
-  );
+await app.listen(port);
 
-  console.log(
-    `Swagger running on /api`,
-  );
+console.log(
+  `Server running on port ${port}`,
+);
 }
 
 bootstrap();

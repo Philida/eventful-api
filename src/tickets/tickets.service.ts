@@ -64,7 +64,7 @@ export class TicketsService {
     },
   });
 
-await this.emailService.sendTestEmail(
+/*await this.emailService.sendTestEmail(
   ticket.user.email,
   `Your Ticket for ${ticket.event.title}`,
   `
@@ -103,6 +103,7 @@ await this.emailService.sendTestEmail(
     />
   `,
 );
+*/
 
 return ticket;
   }

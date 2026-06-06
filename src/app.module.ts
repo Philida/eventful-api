@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { APP_GUARD } from '@nestjs/core';
 import { ScheduleModule } from '@nestjs/schedule';
+import { ConfigModule } from '@nestjs/config';
 
 import {
   ThrottlerModule,
@@ -23,6 +24,10 @@ import { NotificationsModule } from './notifications/notifications.module';
 
 @Module({
   imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+    }),
+
     ThrottlerModule.forRoot([
       {
         ttl: 60000,

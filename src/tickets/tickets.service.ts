@@ -64,7 +64,7 @@ export class TicketsService {
     },
   });
 
-/*await this.emailService.sendTestEmail(
+await this.emailService.sendTestEmail(
   ticket.user.email,
   `Your Ticket for ${ticket.event.title}`,
   `
@@ -103,9 +103,14 @@ export class TicketsService {
     />
   `,
 );
-*/
 
-return ticket;
+
+return {
+  id: ticket.id,
+  qrCode: ticket.qrCode,
+  isScanned: ticket.isScanned,
+  event: ticket.event,
+};
   }
 
   async scanTicket(

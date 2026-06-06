@@ -8,32 +8,42 @@ export class EmailService {
     subject: string,
     html: string,
   ) {
-    const testAccount =
-      await nodemailer.createTestAccount();
+    try {
+      const testAccount =
+        await nodemailer.createTestAccount();
 
-    const transporter =
-      nodemailer.createTransport({
-        host: 'smtp.ethereal.email',
-        port: 587,
-        secure: false,
-        auth: {
-          user: testAccount.user,
-          pass: testAccount.pass,
-        },
-      });
+      const transporter =
+        nodemailer.createTransport({
+          host: 'smtp.ethereal.email',
+          port: 587,
+          secure: false,
+          auth: {
+            user: testAccount.user,
+            pass: testAccount.pass,
+          },
+        });
 
-    const info = await transporter.sendMail({
-      from: '"Eventful" <no-reply@eventful.com>',
-      to,
-      subject,
-      html,
-    });
+      const info =
+        await transporter.sendMail({
+          from:
+            '"Eventful" <no-reply@eventful.com>',
+          to,
+          subject,
+          html,
+        });
 
-    console.log(
-      'Preview URL:',
-      nodemailer.getTestMessageUrl(info),
-    );
+      console.log(
+        'Preview URL:',
+        nodemailer.getTestMessageUrl(info),
+      );
 
-    return info;
+      return info;
+    } catch (error) {
+      console.error(
+        'EMAIL ERROR:',
+        error,
+      );
+      throw error;
+    }
   }
 }

@@ -7,18 +7,24 @@ import {
   UseGuards,
 } from '@nestjs/common';
 
-import { TicketsService } from './tickets.service';
+import {
+  ApiBearerAuth,
+  ApiTags,
+} from '@nestjs/swagger';
 
+import { TicketsService } from './tickets.service';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 
+@ApiTags('tickets')
 @Controller('tickets')
 export class TicketsController {
   constructor(
     private readonly ticketsService: TicketsService,
   ) {}
 
-  @Post('purchase/:eventId')
+  @ApiBearerAuth('bearer')
   @UseGuards(JwtAuthGuard)
+  @Post('purchase/:eventId')
   purchaseTicket(
     @Param('eventId')
     eventId: string,
@@ -32,8 +38,9 @@ export class TicketsController {
     );
   }
 
-  @Patch('scan/:ticketId')
+  @ApiBearerAuth('bearer')
   @UseGuards(JwtAuthGuard)
+  @Patch('scan/:ticketId')
   scanTicket(
     @Param('ticketId')
     ticketId: string,

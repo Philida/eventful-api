@@ -1,98 +1,120 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# Eventful API
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+## Overview
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+Eventful API is a backend event management platform built with NestJS, Prisma, PostgreSQL, JWT Authentication, and Swagger documentation.
 
-## Description
+The application allows users to:
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+* Register and authenticate accounts
+* Create and manage events
+* Purchase event tickets
+* Generate QR-code tickets
+* Scan tickets at event entry
+* Prevent duplicate ticket scans
+* Leave reviews
+* Manage favorites
+* View analytics
+* Receive notifications
+* Schedule reminders
 
-## Project setup
+---
 
-```bash
-$ npm install
-```
+## Tech Stack
 
-## Compile and run the project
+* NestJS
+* TypeScript
+* Prisma ORM
+* PostgreSQL
+* JWT Authentication
+* Swagger/OpenAPI
+* Cloudinary
+* Nodemailer
+* Render Deployment
 
-```bash
-# development
-$ npm run start
+---
 
-# watch mode
-$ npm run start:dev
+## Features
 
-# production mode
-$ npm run start:prod
-```
+### Authentication
 
-## Run tests
+* User registration
+* User login
+* JWT-based authorization
+* Role-based access control
 
-```bash
-# unit tests
-$ npm run test
+### Events
 
-# e2e tests
-$ npm run test:e2e
+* Create events
+* Update events
+* Delete events
+* Browse events
+* Event categories
 
-# test coverage
-$ npm run test:cov
-```
+### Tickets
+
+* Purchase tickets
+* QR code generation
+* Ticket scanning
+* Duplicate scan prevention
+
+### Reviews
+
+* Create reviews
+* View reviews
+
+### Favorites
+
+* Add favorite events
+* Remove favorite events
+
+### Notifications
+
+* User notifications
+
+### Analytics
+
+* Event analytics endpoints
+
+---
+
+## API Documentation
+
+Swagger documentation is available at:
+
+/api
+
+after starting the application.
+
+---
 
 ## Deployment
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
+The project is deployed on Render.
 
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+### Email Notification Note
 
-```bash
-$ npm install -g @nestjs/mau
-$ mau deploy
-```
+Email notification functionality has been implemented using Nodemailer.
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+However, SMTP connections are restricted on the Render free instance used for deployment. Because of this limitation, email sending was disabled in the production deployment to ensure all other application features remain fully functional.
 
-## Resources
+The email service code remains implemented and can be enabled when deploying to a platform or hosting plan that allows outbound SMTP connections.
 
-Check out a few resources that may come in handy when working with NestJS:
+---
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+## Demonstrated Workflow
 
-## Support
+1. User Registration
+2. User Login
+3. Event Creation
+4. Event Listing
+5. Ticket Purchase
+6. QR Code Generation
+7. Ticket Scan Validation
+8. Duplicate Scan Prevention
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+---
 
-## Stay in touch
+## Author
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+Developed as an academic full-stack backend project using NestJS and PostgreSQL.
